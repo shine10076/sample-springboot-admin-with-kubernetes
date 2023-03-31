@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.10'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.shine'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+//            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2021.0.1'
+//            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR1'
+    }
+    resolutionStrategy {
+        cacheChangingModulesFor 0, 'seconds'
+    }
+}
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.6'
+    testCompileOnly 'org.projectlombok:lombok:1.18.6'
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'de.codecentric:spring-boot-admin-starter-server:2.7.0'
+    implementation 'de.codecentric:spring-boot-admin-starter-client:2.7.0'
+    // https://mvnrepository.com/artifact/org.jolokia/jolokia-core
+    implementation 'org.jolokia:jolokia-core:1.7.1'
+
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-kubernetes-discovery
+    implementation 'org.springframework.cloud:spring-cloud-kubernetes-discovery:2.1.6'
+// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-kubernetes-fabric8-all
+    implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes-fabric8-all:2.1.6'
+// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config
+    implementation 'org.springframework.cloud:spring-cloud-starter-config:2.1.6.RELEASE'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

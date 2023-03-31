@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    kubernetes:
+      discovery:
+        all-namespaces: true
+        discovery-server-url: https://xxx  #指定kubernetes集群地址

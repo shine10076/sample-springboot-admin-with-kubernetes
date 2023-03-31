@@ -1,0 +1,47 @@
+server:
+  port: 42300
+  max-http-header-size: 80KB
+  shutdown: graceful
+
+spring:
+  application:
+    name: admin-service
+  profiles:
+    active: local
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      max-request-size: 1000MB
+      max-file-size: 100MB
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  jmx:
+    enabled: true
+  boot:
+    admin:
+      context-path: /admin
+      client:
+        url: http://localhost:42300/admin
+        instance:
+          name: ${spring.application.name}
+  cloud:
+    discovery:
+      client:
+        health-indicator:
+          enabled: false
+    kubernetes:
+      discovery:
+        all-namespaces: true
+        primary-port-name: management #指定暴露的端口名为management
+        service-labels:
+          admin: true  #过滤kubernetes服务的标签 admin=true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
