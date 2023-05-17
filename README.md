@@ -37,12 +37,12 @@ management:
 
 kubernetes:基于kubernetes的标签来过滤想要加入admin后台的服务,所以需要给service配置下label和需要暴露给admin的端口名,例如:
 
-![image-20230517105813835](/Users/qianyu/WorkSpace/githubWorkSpace/admin/sample-springboot-admin-on-kubernetes/src/main/resources/img/image-20230517105813835.png)
+![image-20230517105813835](src/main/resources/img/image-20230517105813835.png)
 
 **给service加上标签 admin=true,将要暴露的端口命名为 management**
 
 可以用来快速新增和执行脚本
 
-![image-20230517105934926](/Users/qianyu/WorkSpace/githubWorkSpace/admin/sample-springboot-admin-on-kubernetes/src/main/resources/img/image-20230517105934926.png)
+![image-20230517105934926](/src/main/resources/img/image-20230517105934926.png)
 
 **注意,启动需要配置kubernetes service acount的权限(read,watch)**
